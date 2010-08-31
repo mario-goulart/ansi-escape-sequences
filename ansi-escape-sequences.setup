@@ -1,0 +1,8 @@
+;;; ansi-escape-sequences.setup -*- scheme -*-
+
+(compile -s -O2 -d1 -j ansi-escape-sequences ansi-escape-sequences.scm)
+(compile -s -O2 -d1 ansi-escape-sequences.import.scm)
+
+(install-extension 'ansi-escape-sequences
+                   '("ansi-escape-sequences.so" "ansi-escape-sequences.import.so")
+                   '((version 0.1)))
