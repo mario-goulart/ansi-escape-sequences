@@ -5,4 +5,4 @@
  (author "<a href=\"http://wiki.call-cc.org/users/mario-domenech-goulart\">Mario Domenech Goulart</a>")
  (license "BSD")
  (category io)
- (files "ansi-escape-sequences.scm" "ansi-escape-sequences.setup" "ansi-escape-sequences.html"))
+ (files "ansi-escape-sequences.meta" "ansi-escape-sequences.scm" "ansi-escape-sequences.setup" "tests/tests.scm"))
