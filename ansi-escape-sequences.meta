@@ -4,4 +4,5 @@
  (synopsis "Procedures to generate ANSI escape sequences")
  (author "<a href=\"http://wiki.call-cc.org/users/mario-domenech-goulart\">Mario Domenech Goulart</a>")
  (license "BSD")
- (category io))
+ (category io)
+ (files "ansi-escape-sequences.meta" "ansi-escape-sequences.scm" "ansi-escape-sequences.setup" "ansi-escape-sequences.release-info" "tests/tests.scm"))
