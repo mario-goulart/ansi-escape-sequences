@@ -15,10 +15,12 @@
 (import chicken scheme data-structures)
 (use srfi-1)
 
-;; http://ascii-table.com/ansi-csiape-sequences.php
+;; http://ascii-table.com/ansi-escape-sequences.php
 
 (define (csi . args)
-  (string-append "\x1b[" (string-intersperse (map ->string args) "")))
+  (string-append "\x1b["
+                 (string-intersperse (map ->string (butlast args)) ";")
+                 (last args)))
 
 (define (cursor-position #!optional (line 0) (column 0))
   (csi line column "H"))
