@@ -6,6 +6,8 @@
    cursor-backward
    save-cursor-position
    restore-cursor-position
+   hide-cursor
+   show-cursor
    erase-display
    erase-line
    reset-mode
@@ -42,6 +44,12 @@
 
 (define (restore-cursor-position)
   (csi "u"))
+
+(define (hide-cursor)
+  (csi "?25l"))
+
+(define (show-cursor)
+  (csi  "?25h"))
 
 (define (erase-display)
   (csi "2J"))
