@@ -10,8 +10,11 @@
    show-cursor
    erase-display
    erase-line
+   set-title
    reset-mode
    set-text
+   set-text256
+   set-color256!
    set-mode)
 
 (import chicken scheme data-structures)
@@ -21,6 +24,11 @@
 
 (define (csi . args)
   (string-append "\x1b["
+                 (string-intersperse (map ->string (butlast args)) ";")
+                 (last args)))
+
+(define (osc . args)
+  (string-append "\x1b]"
                  (string-intersperse (map ->string (butlast args)) ";")
                  (last args)))
 
@@ -57,6 +65,9 @@
 (define (erase-line)
   (csi "K"))
 
+(define (set-title title)
+  (string-append (osc "0" title "\x07")))
+
 (define (set-text attribs text #!optional (reset #t))
   (let ((valid-attribs '((reset         . 0)
                          (bold          . 1)
@@ -90,6 +101,42 @@
            ";") "m")
      text
      (if reset (csi "0m") ""))))
+
+(define (set-text256 attribs text #!optional (reset #t))
+  (let ((valid-attribs '((foreground    . "38;5;")
+                         (background    . "48;5;")
+                         (reset         . "0")
+                         (bold          . "1")
+                         (underscore    . "4")
+                         (blink         . "5")
+                         (reverse-video . "7")
+                         (concealed     . "8")
+                         )))
+    (string-append
+     (csi (string-intersperse
+           (filter-map (lambda (attr)
+                         (if (list? attr)
+                             (let ((a (alist-ref (car attr) valid-attribs)))
+                               (and a (conc a (number->string (cadr attr)))))
+                             (let ((a (alist-ref attr valid-attribs)))
+                               (and a ))))
+                       attribs)
+           ";") "m")
+     text
+     (if reset (csi "0m") ""))))
+
+(define (set-color256! color r g b)
+  (osc
+   "4"
+   (number->string color)
+   (string-append "rgb:"
+                  (string-intersperse
+                   (map (lambda (x)
+                          (if (< x 16)
+                              (conc "0" (number->string x 16))
+                              (number->string x 16)))
+                        (list r g b)) "/"))
+   "\x1b\\"))
 
 (define (set/reset-mode attrib set?)
   (let ((valid-mode-attribs
