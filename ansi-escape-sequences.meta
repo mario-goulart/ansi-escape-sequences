@@ -1,7 +1,0 @@
-;;; ansi-escape-sequences.meta -*- scheme -*-
-
-((egg "ansi-escape-sequences.egg")
- (synopsis "Procedures to generate ANSI escape sequences")
- (author "Mario Domenech Goulart")
- (license "BSD")
- (category io))

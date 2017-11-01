@@ -17,8 +17,10 @@
    set-color256!
    set-mode)
 
-(import chicken scheme data-structures)
-(use srfi-1)
+(import chicken scheme)
+(import (chicken data-structures)
+        (chicken string))
+(import srfi-1)
 
 ;; http://ascii-table.com/ansi-escape-sequences.php
 

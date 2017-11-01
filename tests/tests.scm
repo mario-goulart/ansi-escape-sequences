@@ -1,6 +1,4 @@
-(use posix)
-
-(load "../ansi-escape-sequences.scm")
+(import (chicken port) (chicken posix))
 (import ansi-escape-sequences)
 
 (set-buffering-mode! (current-output-port) #:none)
