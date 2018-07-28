@@ -1,7 +1,12 @@
-(use posix)
-
+(import scheme)
 (load "../ansi-escape-sequences.scm")
 (import ansi-escape-sequences)
+
+(cond-expand
+ (chicken-4
+  (use posix))
+ (chicken-5
+  (import (chicken port))))
 
 (set-buffering-mode! (current-output-port) #:none)
 (display (save-cursor-position))

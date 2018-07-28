@@ -1,0 +1,11 @@
+;;; ansi-escape-sequences.egg -*- scheme -*-
+
+((synopsis "Procedures to generate ANSI escape sequences")
+ (author "Mario Domenech Goulart")
+ (license "BSD")
+ (category io)
+ (build-dependencies srfi-1)
+ (component-options
+  (csc-options "-O3" "-d1"))
+ (components
+  (extension ansi-escape-sequences)))
