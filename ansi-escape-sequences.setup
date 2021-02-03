@@ -5,4 +5,4 @@
 
 (install-extension 'ansi-escape-sequences
                    '("ansi-escape-sequences.so" "ansi-escape-sequences.import.so")
-                   '((version "0.5")))
+                   '((version "0.6")))
